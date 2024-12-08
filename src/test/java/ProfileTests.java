@@ -115,4 +115,4 @@ public class ProfileTests extends BaseTest {
 }
 
 
-//li:nth-of-type(2) > .theme > .name
+//li:nth-of-type(i) > .theme > .name
