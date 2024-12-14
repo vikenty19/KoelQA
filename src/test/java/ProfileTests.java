@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -88,15 +89,18 @@ public class ProfileTests extends BaseTest {
 
         List<WebElement> backgrounds = driver.findElements(By.cssSelector(".theme .name"));
         List<String> backColors = new ArrayList<>();
+
       for (WebElement backGround: backgrounds) {
           new Actions(driver)
                   .moveToElement(backGround)
                   .perform();
           String color = backGround.getText();
+    //      String backgroundColorStyle = backGround.getCssValue("background-color");
+     //     System.out.println(backgroundColorStyle + " index  "+ color);
           backColors.add(color);
       }
 
-        System.out.println(backColors + " " + backColors.size());
+     //   System.out.println(backColors + " " + backColors.size());
 
 
         WebElement colorPane = driver.findElement(By.cssSelector(colorLocator));
@@ -106,8 +110,11 @@ public class ProfileTests extends BaseTest {
                 .click(colorPane)
                 .perform();
         Thread.sleep(3000);
-        String colour = colorPane.getText();
-        System.out.println(colour + "  " + backColors.get(j));
+
+        String colorStyle = colorPane.getCssValue("background-color");
+        System.out.println(colorStyle);
+        String colourText = colorPane.getText();
+        System.out.println(colourText + "  " + backColors.get(j));
         Assert.assertEquals(backColors.get(j), colorPane.getText());
 
     }
