@@ -32,7 +32,7 @@ public class LoginStepDefinitions  {
     public void tearDown() {
         driver.quit();
     }*/
-   @Given ("I open browser")
+   @Given ("^I open browser$")
     public void setUpDriver(){
 WebDriverManager.chromedriver().clearDriverCache().setup();
         WebDriverManager.chromedriver().setup();

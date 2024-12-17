@@ -113,6 +113,9 @@ public class ProfileTests extends BaseTest {
 
         String colorStyle = colorPane.getCssValue("background-color");
         System.out.println(colorStyle);
+        WebElement progressive = driver.findElement(By.id("progressPane"));
+        String progressiveColor = progressive.getCssValue("background-color");
+        System.out.println(colorStyle + " -------->"+ progressiveColor);
         String colourText = colorPane.getText();
         System.out.println(colourText + "  " + backColors.get(j));
         Assert.assertEquals(backColors.get(j), colorPane.getText());

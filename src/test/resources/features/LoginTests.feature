@@ -10,7 +10,7 @@ Feature: login tests
     Then I am logged in
    Examples:
     |email                  |   password|
-    |"vicplach123@gmail.com"|"MEGAdelta123@"|
+    |"galy.o@testpro.io"|"te$t$tudent1"|
 
 
   Scenario Outline:LoginWrongEmail
