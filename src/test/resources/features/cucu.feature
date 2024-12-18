@@ -6,7 +6,7 @@ Feature: Play Song
 When i enter valid email "galy.o@testpro.io"
 And I enter valid password "te$t$tudent1"
 And  I click Submit
-# And I am logged in
+And I am logged in
 #Examples:
 #|email                  |   password|
 #|"galy.o@testpro.io"|"te$t$tudent1"|

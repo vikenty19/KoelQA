@@ -42,6 +42,7 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
         options.addArguments("--start-maximized");
 
           driver = new ChromeDriver(options);
+          wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
     }
     @When("I open login page")
@@ -116,5 +117,11 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
         passwordInput.click();
         passwordInput.clear();
         passwordInput.sendKeys(map.get("password"));
+    }
+    @And("User click on AllSongs button")
+    public void userClickOnAllSongsButton() {
+        WebElement allSongs =wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector(".music .songs")));
+        allSongs.click();
     }
 }
