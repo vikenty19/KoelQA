@@ -12,3 +12,4 @@ Feature: Play Song
       | email               | password       | songName|
       | "galy.o@testpro.io" | "te$t$tudent1" | "Episode 2"|
       | "galy.o@testpro.io" | "te$t$tudent1" | "Pluto"|
+      | "galy.o@testpro.io" | "te$t$tudent1" |"Scott Holmes Music"|
