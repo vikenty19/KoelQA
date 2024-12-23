@@ -53,7 +53,7 @@ public class PlaySongStep {
     public void equalizerButtonIsAppeared() {
         Assert.assertTrue(loginStepDefinitions.driver.findElement(By.cssSelector("div.bars")).isDisplayed());
     }
-    @After
+    @After("@playSong")
     public void tearDown(){
         loginStepDefinitions.driver.quit();
     }

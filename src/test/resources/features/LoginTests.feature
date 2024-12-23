@@ -2,6 +2,7 @@ Feature: login tests
   Background:
    Given I open browser
     When I open login page
+    @login
   Scenario Outline: login success
 
     And  i enter valid email <email>
@@ -12,7 +13,7 @@ Feature: login tests
     |email                  |   password|
     |"galy.o@testpro.io"|"te$t$tudent1"|
 
-
+@login
   Scenario Outline:LoginWrongEmail
 
     And I enter wrong email

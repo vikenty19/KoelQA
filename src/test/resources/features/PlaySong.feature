@@ -1,9 +1,9 @@
 Feature: Play Song
-
+@playSong
   Scenario Outline:play song with existing name
+  Given I am logged in ahd on SongPage <email>,<password>
 
-   Given I am logged in ahd on SongPage <email>,<password>
-    And User click on AllSongs button
+    When User click on AllSongs button
     And Click on the song title <songName>
     And click on the play button
     Then Equalizer button is appeared

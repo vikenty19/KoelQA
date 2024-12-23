@@ -28,10 +28,10 @@ public class LoginStepDefinitions  {
      public  WebDriver driver;
     public static String url ="https://qa.koel.app/";
     public static WebDriverWait wait = null;
- /* @After
+ @After("@login")
     public void tearDown() {
         driver.quit();
-    }*/
+    }
    @Given ("^I open browser$")
     public void setUpDriver(){
 WebDriverManager.chromedriver().clearDriverCache().setup();
@@ -118,7 +118,7 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
         passwordInput.clear();
         passwordInput.sendKeys(map.get("password"));
     }
-    @And("User click on AllSongs button")
+    @When("User click on AllSongs button")
     public void userClickOnAllSongsButton() {
         WebElement allSongs =wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector(".music .songs")));
