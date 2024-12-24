@@ -4,7 +4,7 @@
 <suite name="TestNG">
 
     <test name="All Tests" preserve-order="false">
-        <classes>e
+        <classes>
                       <class name="LoginTests"/>
                      <class name="CSVDataProviderTest"/>
                      <class name="ProfileTests"/>

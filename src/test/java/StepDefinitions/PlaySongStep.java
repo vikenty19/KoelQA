@@ -32,7 +32,7 @@ public class PlaySongStep {
 
     @And("Click on the song title {string}")
     public void clickOnTheSongName(String songName) {
-           loginStepDefinitions.driver.findElement(By.xpath("//td[contains(text(), '"+songName+"')]")).click();
+        loginStepDefinitions.driver.findElement(By.xpath("//td[contains(text(), '"+songName+"')]")).click();
 
     }
 

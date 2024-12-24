@@ -49,7 +49,7 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
     public void iOpenLoginPage(){
         driver.get(url);
     }
-    @And("i enter valid email {string}")
+    @And("I enter valid email {string}")
     public void iEnterEmail(String email){
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
                 emailInput.click();
@@ -59,7 +59,6 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
     }
     @And("I enter valid password {string}")
     public void iEnterPassword(String password) {
-        LoginPage loginPage = new LoginPage(driver);
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
@@ -85,12 +84,12 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
 
 
 
-    @And("I enter wrong email")
-    public void iEnterWrongEmail() {
+    @And("I enter wrong email {string}")
+    public void iEnterWrongEmail(String email) {
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys("vicplach13@gmail.com");
+        emailInput.sendKeys(email);
     }
 
 
@@ -124,4 +123,6 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
                 .visibilityOfElementLocated(By.cssSelector(".music .songs")));
         allSongs.click();
     }
+
+
 }

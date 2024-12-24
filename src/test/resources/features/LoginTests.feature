@@ -5,7 +5,7 @@ Feature: login tests
     @login
   Scenario Outline: login success
 
-    And  i enter valid email <email>
+    And  I enter valid email <email>
     And I enter valid password <password>
     And  I click Submit
     Then I am logged in
@@ -16,22 +16,12 @@ Feature: login tests
 @login
   Scenario Outline:LoginWrongEmail
 
-    And I enter wrong email
+    And I enter wrong email <email>
     And I enter valid password <password>
     And I click Submit
     Then I am not logged in
     Examples:
-      |   password|
-      |"MEGAdelta123@"|
+      |   password|email|
+      |"MEGAdelta123@"|"vicplach13@gmail.com"|
 
- ## Scenario  : login1 success
-#    And  I enter details below into fields
- #     |email                        |password|
-   #   | vicplach123@gmail.com    |  MEGAdelta123@   |
-#    And  i enter valid email <email>
- #   And I enter valid password <password>
- #   And  I click Submit
-  #  Then I am logged in
-  #  Examples:
-   #   |email                  |   password|
-    #  |"vicplach123@gmail.com"|"MEGAdelta123@"|
+

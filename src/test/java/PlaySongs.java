@@ -13,7 +13,7 @@ public class PlaySongs extends BaseTest {
     @Test
     public void playSong() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("vicplach123@gmail.com", "MEGAdelta06@");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         BasePage basePage = new BasePage(driver);
         songPage.goToAllSongsTub();
@@ -27,7 +27,7 @@ public class PlaySongs extends BaseTest {
     @Test
     public void playSongOverPlayBtn() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("vicplach123@gmail.com", "MEGAdelta06@");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         BasePage basePage = new BasePage(driver);
         songPage.goToAllSongsTub();
@@ -41,7 +41,7 @@ public class PlaySongs extends BaseTest {
     @Test
     public void playSongFromListTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         BasePage basePage = new BasePage(driver);
         songPage.goToAllSongsTub();
