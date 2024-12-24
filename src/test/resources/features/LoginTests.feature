@@ -2,7 +2,7 @@ Feature: login tests
   Background:
    Given I open browser
     When I open login page
-    @login
+    @login @validcredentials
   Scenario Outline: login success
 
     And  I enter valid email <email>

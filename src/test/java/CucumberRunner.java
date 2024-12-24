@@ -8,8 +8,8 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(
         features = {"src/test/resources/features/LoginTests.feature"},
-        glue = {"hooks","StepDefinitions"},
-   //    tags = "@all",
+        glue = {"hooks","StepDefinitions"},//SHOW package where runner should find the path
+       tags = "@validcredentials",
         publish = true,
         plugin = {"pretty",
                "html:target/CucumberReports/CucumberReport.html" ,
