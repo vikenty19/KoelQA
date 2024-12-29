@@ -1,7 +1,9 @@
 import POM.HomePage;
 import POM.LoginPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -21,6 +23,10 @@ public class LoginTests extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login(myEmail, myLogin);
+        //Screenshot of the element of the page - user is  Login
+        WebElement user = homePage.waitUntilVisible(By.cssSelector(".profile .view-profile"));
+        File srcFile = user.getScreenshotAs(OutputType.FILE);
+        FileHandler.copy(srcFile,new File("./ScreenShots/userAvatar.png"));
 
     // Make screenshot using robot class
         Robot robot = new Robot();
