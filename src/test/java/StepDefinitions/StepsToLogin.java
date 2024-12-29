@@ -1,10 +1,13 @@
 package StepDefinitions;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+
+import java.util.Map;
 
 public class StepsToLogin {
     @Given("User opens application URL")
@@ -50,6 +53,12 @@ public class StepsToLogin {
     @When("User enters invalid email {string}")
     public void userEntersInvalidEmail(String email) {
         System.out.println("User enters invalid email  " + email);
+    }
+    @When("User enters  credentials from the table")
+    public void userEntersCredentialsFromTheTable(DataTable dataTable){
+        Map<String,String> map =dataTable.asMap(String.class,String.class);
+        System.out.println("Email is  "+ map.get("email"));
+        System.out.println("Password is  "+ map.get("password"));
     }
 
     @When("User doesn't enter any credentials")
