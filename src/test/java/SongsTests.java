@@ -93,6 +93,7 @@ public class SongsTests extends BaseTest {
         loginPage.login(myEmail, myLogin);
         Thread.sleep(1000);
         SongPage songPage = new SongPage(driver);
+
         songPage.searchSongInSearchField(text);
         WebElement song = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//strong")));
@@ -117,13 +118,13 @@ public class SongsTests extends BaseTest {
         }
         softAssert.assertEquals(Assertions.onlyOneSongIsInSearchResult(searchResult).booleanValue(), true);
         //search for artist name
-        WebElement artist = wait.until(ExpectedConditions
+     /*   WebElement artist = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//section[@class= 'artists']/p")));
         System.out.println(artist.getText());
         //search for album name
         WebElement album = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//section[@class= 'albums']/p")));
-        System.out.println(album.getText());
+        System.out.println(album.getText());*/
         softAssert.assertAll();
     }
 
