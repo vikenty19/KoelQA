@@ -2,17 +2,20 @@ import POM.BasePage;
 import POM.LoginPage;
 import POM.PlayListPage;
 import POM.SongPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
 
@@ -82,22 +85,42 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void searchForSong() throws InterruptedException {
-        String text = "Tunnel of Lights (ID 1689)";
+        String text = "Tunnel of Lights (ID 1689)";                                          //Tunnel of Lights (ID 1689)
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(myEmail, myLogin);
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         SongPage songPage = new SongPage(driver);
         songPage.searchSongInSearchField(text);
         WebElement song = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector("strong")));   //span[contains(text(),'Riqui-Riqui')]")));
+                .visibilityOfElementLocated(By.xpath("//strong")));
 
 
         String NameSong = song.getText();
         System.out.println("----" + NameSong);
-        Assert.assertEquals(NameSong, text);
+        // SoftAssert
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertEquals(NameSong, text);
+        //Check that only searching song in result
+        List<WebElement> searchResult = driver
+                .findElements(By.cssSelector(" [data-testid = 'song-excerpts'] ul article"));
+        if(!Assertions.onlyOneSongIsInSearchResult(searchResult)){
+            File srcFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+            File destinationFile = new File("./ScreenShots/SearchSong  "+NameSong+".png");
+            try {
+                FileUtils.copyFile(srcFile,destinationFile);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        softAssert.assertEquals(Assertions.onlyOneSongIsInSearchResult(searchResult).booleanValue(),true);
+        //search for artist name
         WebElement artist = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//section[@class= 'artists']/p")));
         System.out.println(artist.getText());
-
+        //search for album name
+        WebElement album = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//section[@class= 'albums']/p")));
+        System.out.println(album.getText());
+       softAssert.assertAll();
     }
 }
