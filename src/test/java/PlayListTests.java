@@ -24,7 +24,7 @@ public class PlayListTests extends BaseTest {
         PlayListPage playListPage = new PlayListPage(driver);
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         playListPage.plusBtnClick();
         playListPage.goToPlayListField();
         playListPage.createNewPlaylist(playlistName);
@@ -45,7 +45,7 @@ public class PlayListTests extends BaseTest {
         String newPlayLIstName = "Mermaid";
         PlayListPage playListPage = new PlayListPage(driver);
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
 
         playListPage.choosePlayListToDelete();
         playListPage.enterPlaylistName(newPlayLIstName);

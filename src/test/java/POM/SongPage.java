@@ -29,7 +29,7 @@ public class SongPage extends BasePage {
         searchInput.click();
         searchInput.clear();
         searchInput.sendKeys(text);
-        return this;
+        return new SongPage(driver);
     }
 
     public void clickSearchField() {

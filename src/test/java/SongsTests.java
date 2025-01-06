@@ -24,18 +24,18 @@ public class SongsTests extends BaseTest {
                 "Tunnel of Lights (ID 1689)";
         String playlistName = generateRandomPlaylistName();
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         BasePage basePage = new BasePage(driver);
         songPage.searchSongInSearchField(text)
-                .clickAllViewButtn();
+          .clickAllViewButtn();
         Thread.sleep(500);
         songPage.clickFirstSongInResult();
-        System.out.println(songPage.clickFirstSongInResult());
+      //  System.out.println(songPage.clickFirstSongInResult());
         songPage.clickAddToBtn();
         songPage.createNewPlaylistWhileAddingSong(playlistName);
         basePage.isSuccessBannerDisplayed();
-        Assert.assertEquals(text, songPage.getSongText());
+        Assert.assertEquals(text, songPage.getSongName());
         System.out.println(text + " " + songPage.getSongText());
 
 
@@ -44,7 +44,7 @@ public class SongsTests extends BaseTest {
     @Test
     public void checkVisibilityTest() {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         String text = songPage.getSongText();
         System.out.println("WHERE IS TEXT?" + text);
@@ -56,7 +56,7 @@ public class SongsTests extends BaseTest {
     @Test
     public void countSongsInAllSongs() throws InterruptedException {
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         SongPage songPage = new SongPage(driver);
         BasePage basePage = new BasePage(driver);
         songPage.goToAllSongsTub();
@@ -82,12 +82,11 @@ public class SongsTests extends BaseTest {
 
     @Test
     public void searchForSong() throws InterruptedException {
-        String text = "Riqui-Riqui";
+        String text = "Tunnel of Lights (ID 1689)";
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("demo@class.com", "te$t$tudent");
+        loginPage.login(myEmail, myLogin);
         Thread.sleep(3000);
         SongPage songPage = new SongPage(driver);
-        BasePage basePage = new BasePage(driver);
         songPage.searchSongInSearchField(text);
         WebElement song = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.cssSelector("strong")));   //span[contains(text(),'Riqui-Riqui')]")));
@@ -96,6 +95,9 @@ public class SongsTests extends BaseTest {
         String NameSong = song.getText();
         System.out.println("----" + NameSong);
         Assert.assertEquals(NameSong, text);
+        WebElement artist = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("//section[@class= 'artists']/p")));
+        System.out.println(artist.getText());
 
     }
 }
