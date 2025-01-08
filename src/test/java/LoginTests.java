@@ -1,40 +1,22 @@
 import POM.HomePage;
 import POM.LoginPage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 public class LoginTests extends BaseTest {
 
 
     @Test//(groups = {"smoke1"})
-    public void loginSucceedTest() throws AWTException, IOException, InterruptedException {
+    public void loginSucceedTest() {
         LoginPage loginPage = new LoginPage(driver);
         HomePage homePage = new HomePage(driver);
         loginPage.login(myEmail, myLogin);
-        //Screenshot of the element of the page - user is  Login
-        WebElement user = homePage.waitUntilVisible(By.cssSelector(".profile .view-profile"));
-        File srcFile = user.getScreenshotAs(OutputType.FILE);
-        FileHandler.copy(srcFile,new File("./ScreenShots/userAvatar.png"));
 
-    // Make screenshot using robot class
-        Robot robot = new Robot();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        Rectangle rectangle = new Rectangle(d);
-        BufferedImage bufferedImage =robot.createScreenCapture(rectangle);
-        String avatarPath = System.getProperty("user.dir")+"/ScreenShots/alert.png";
-        ImageIO.write(bufferedImage,"png",new File(avatarPath));
         // find if avatar exists
         Assert.assertTrue(homePage.getAvatar(), " User is NOT Logged in");
         System.out.println("User logged successfully   " + homePage.getAvatar());

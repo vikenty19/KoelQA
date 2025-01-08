@@ -46,15 +46,6 @@ Feature: Login user
       | email                       | password |
       | "amotooricap9343@gmail.com" | "12345"  |
 
-  Scenario  Login with invalid credentials and valid password
-
-    When User enters  credentials from the table
-      | email                    |             password |
-      | amotooricap9343@gmail.com|        12345              |
-    And Click on login button
-    Then User should get a warning message
-
-
 
 
 

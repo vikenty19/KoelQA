@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -80,7 +79,7 @@ public class ProfileTests extends BaseTest {
     public void profileThemeTest(String colorLocator, int j) throws InterruptedException {
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(myEmail, myLogin);
+        loginPage.login("demo@class.com", "te$t$tudent");
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.openProfile();
         Thread.sleep(3000);
@@ -89,18 +88,18 @@ public class ProfileTests extends BaseTest {
 
         List<WebElement> backgrounds = driver.findElements(By.cssSelector(".theme .name"));
         List<String> backColors = new ArrayList<>();
+        for (int i = 0; i < backgrounds.size(); i++) {
 
-      for (WebElement backGround: backgrounds) {
-          new Actions(driver)
-                  .moveToElement(backGround)
-                  .perform();
-          String color = backGround.getText();
-    //      String backgroundColorStyle = backGround.getCssValue("background-color");
-     //     System.out.println(backgroundColorStyle + " index  "+ color);
-          backColors.add(color);
-      }
 
-     //   System.out.println(backColors + " " + backColors.size());
+            new Actions(driver)
+                    .moveToElement(backgrounds.get(i))
+                    .perform();
+            String color = backgrounds.get(i).getText();
+
+            backColors.add(color);
+        }
+
+        System.out.println(backColors + " " + backColors.size());
 
 
         WebElement colorPane = driver.findElement(By.cssSelector(colorLocator));
@@ -110,14 +109,8 @@ public class ProfileTests extends BaseTest {
                 .click(colorPane)
                 .perform();
         Thread.sleep(3000);
-
-        String colorStyle = colorPane.getCssValue("background-color");
-        System.out.println(colorStyle);
-        WebElement progressive = driver.findElement(By.id("progressPane"));
-        String progressiveColor = progressive.getCssValue("background-color");
-        System.out.println(colorStyle + " -------->"+ progressiveColor);
-        String colourText = colorPane.getText();
-        System.out.println(colourText + "  " + backColors.get(j));
+        String colour = colorPane.getText();
+        System.out.println(colour + "  " + backColors.get(j));
         Assert.assertEquals(backColors.get(j), colorPane.getText());
 
     }
@@ -125,4 +118,4 @@ public class ProfileTests extends BaseTest {
 }
 
 
-//li:nth-of-type(i) > .theme > .name
+//li:nth-of-type(2) > .theme > .name

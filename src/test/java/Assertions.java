@@ -5,8 +5,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.util.List;
-
 public class Assertions extends BaseTest {
 
     // Soft assert example
@@ -16,12 +14,4 @@ public class Assertions extends BaseTest {
         softAssert.assertEquals(driver.getCurrentUrl(), "https://bbb.testpro.io/#!/queue");
         System.out.println("Hello world");
         softAssert.assertAll();*/
-    public static Boolean onlyOneSongIsInSearchResult(List<WebElement>searchResult) {
-
-        if (searchResult.size() <= 1) {
-            return true;
-
-        }
-        return false;
-    }
 }

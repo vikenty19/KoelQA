@@ -5,14 +5,14 @@
 
     <test name="All Tests" preserve-order="false">
         <classes>
-                     <class name="LoginTests"/>
+                      <class name="LoginTests"/>
                      <class name="CSVDataProviderTest"/>
-                     <class name="ProfileTests"/>
+                       <class name="ProfileTests"/>
                       <class name="SongsTests"/>
-                    <class name="Homework17"/>
+                      <class name="Homework17"/>
                       <class name="PlaySongs"/>
                       <class name="PlayListTests"/>
-                     <class name="CucumberRunner"/>
+            <class name="CucumberRunner"/>
 
 
         </classes>

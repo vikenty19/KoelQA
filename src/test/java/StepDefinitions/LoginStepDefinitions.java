@@ -28,11 +28,11 @@ public class LoginStepDefinitions  {
      public  WebDriver driver;
     public static String url ="https://qa.koel.app/";
     public static WebDriverWait wait = null;
- @After("@login")
+ /* @After
     public void tearDown() {
         driver.quit();
-    }
-   @Given ("^I open browser$")
+    }*/
+   @Given ("I open browser")
     public void setUpDriver(){
 WebDriverManager.chromedriver().clearDriverCache().setup();
         WebDriverManager.chromedriver().setup();
@@ -42,14 +42,13 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
         options.addArguments("--start-maximized");
 
           driver = new ChromeDriver(options);
-          wait = new WebDriverWait(driver,Duration.ofSeconds(10));
 
     }
     @When("I open login page")
     public void iOpenLoginPage(){
         driver.get(url);
     }
-    @And("I enter valid email {string}")
+    @And("i enter valid email {string}")
     public void iEnterEmail(String email){
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
                 emailInput.click();
@@ -59,6 +58,7 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
     }
     @And("I enter valid password {string}")
     public void iEnterPassword(String password) {
+        LoginPage loginPage = new LoginPage(driver);
         WebElement passwordInput = driver.findElement(By.cssSelector("[type='password']"));
         passwordInput.click();
         passwordInput.clear();
@@ -84,12 +84,12 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
 
 
 
-    @And("I enter wrong email {string}")
-    public void iEnterWrongEmail(String email) {
+    @And("I enter wrong email")
+    public void iEnterWrongEmail() {
         WebElement emailInput = driver.findElement(By.cssSelector("[type='email']"));
         emailInput.click();
         emailInput.clear();
-        emailInput.sendKeys(email);
+        emailInput.sendKeys("vicplach13@gmail.com");
     }
 
 
@@ -117,12 +117,4 @@ WebDriverManager.chromedriver().clearDriverCache().setup();
         passwordInput.clear();
         passwordInput.sendKeys(map.get("password"));
     }
-    @When("User click on AllSongs button")
-    public void userClickOnAllSongsButton() {
-        WebElement allSongs =wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.cssSelector(".music .songs")));
-        allSongs.click();
-    }
-
-
 }

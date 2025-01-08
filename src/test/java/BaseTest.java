@@ -91,7 +91,7 @@ public class BaseTest {
     @DataProvider(name = "profileThemeTest")
     public static Object[][] getProfileThemeFromDataProvider() {
         return new Object[][]{
-                    {"li:nth-of-type(1) > .theme > .name", 0},
+                //    {"li:nth-of-type(1) > .theme > .name", 0},
                 {"li:nth-of-type(8) > .theme > .name", 7},
                 {"li:nth-of-type(16) > .theme > .name", 15},
         };

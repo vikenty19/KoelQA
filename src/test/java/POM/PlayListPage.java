@@ -18,7 +18,7 @@ public class PlayListPage extends BasePage {
     }
 
     By plusBtn = By.cssSelector(".fa-plus-circle");
-    By pListLocator = By.cssSelector(".playlist:nth-child(4)>a");
+    By pListLocator = By.cssSelector(".playlist:nth-child(3)>a");
 
     By pListNameField = By.cssSelector("input[name='name']");
 
