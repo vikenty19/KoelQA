@@ -88,13 +88,16 @@ public class SongsTests extends BaseTest {
 
     @Test(dataProvider = "AllSongsData")
     public void searchForSong(String text) throws InterruptedException {
-        // String text = "Tunnel of Lights (ID 1689)";                                          //Tunnel of Lights (ID 1689)
+      //   String text = "Tunnel of Lights (ID 1689)";                                          //Tunnel of Lights (ID 1689)
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(myEmail, myLogin);
         Thread.sleep(1000);
         SongPage songPage = new SongPage(driver);
-
-        songPage.searchSongInSearchField(text);
+         // search for song name without author whose name divided by hyphen
+        int index = text.indexOf("-");
+        String name = (index != -1)?text.substring(index+2):text;
+        //search only by name
+        songPage.searchSongInSearchField(name);
         WebElement song = wait.until(ExpectedConditions
                 .visibilityOfElementLocated(By.xpath("//strong")));
 
@@ -103,7 +106,7 @@ public class SongsTests extends BaseTest {
         System.out.println("----" + NameSong);
         // SoftAssert
         SoftAssert softAssert = new SoftAssert();
-        softAssert.assertEquals(NameSong, text);
+        softAssert.assertEquals(NameSong, name);
         //Check that only searching song in result
         List<WebElement> searchResult = driver
                 .findElements(By.cssSelector(" [data-testid = 'song-excerpts'] ul article"));
@@ -128,7 +131,7 @@ public class SongsTests extends BaseTest {
         softAssert.assertAll();
     }
 
-    @DataProvider(name = "AllSongsData")
+    @DataProvider(name = "AllSongsData",parallel=true)
     public Object[][] AllSongsList() throws Exception {
         // path to csv file that is located under resources folder
         Reader reader = Files.newBufferedReader(Paths.get(System.getProperty("user.dir") + "/src/test/resources/AllSongsList.csv"));
